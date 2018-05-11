@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_absen"
+            android:icon="@drawable/absen"
+            android:title="Absen" />
+
+        <item
+            android:id="@+id/nav_rute"
+            android:icon="@drawable/rute"
+            android:title="Rute" />
+
+        <item
+            android:id="@+id/nav_customer"
+            android:icon="@drawable/customer"
+            android:title="Daftar Pelanggan" />
+
+        <item
+            android:id="@+id/nav_produk"
+            android:icon="@drawable/produk"
+            android:title="Produk" />
+
+        <item
+            android:id="@+id/nav_stock_canvas"
+            android:icon="@drawable/stock_canvas"
+            android:title="Stok Canvas" />
+
+    <item android:title="Riwayat">
+        <menu>
+            <item
+                android:id="@+id/nav_riwayat"
+                android:icon="@drawable/riwayat_kerja"
+                android:title="Riwayat Pekerjaan" />
+
+        </menu>
+    </item>
+
+    <item android:title="Akun">
+        <menu>
+            <item
+                android:id="@+id/nav_keluar"
+                android:icon="@drawable/keluar"
+                android:title="Keluar" />
+
+        </menu>
+    </item>
+    </group>
+
+
+</menu>

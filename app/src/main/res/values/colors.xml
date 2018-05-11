@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#667fc9</color>
+    <color name="colorPrimaryDark">#5770b6</color>
+    <color name="colorAccent">#5174a9</color>
+    <color name="kuning">#fafaf5</color>
+    <color name="background">#e9e5e5</color>
+
+
+
+
+    <color name="buttontrans">#80667fc9</color>
+    <color name="buttonlogin">#4b63a7</color>
+
+    <color name="putih">#ffffff</color>
+
+
+</resources>

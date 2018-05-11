@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">OSales</string>
+    <string name="title_activity_menu">Menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="reset">Reset</string>
+    <string name="refresh">Perbaharui Lokasi</string>
+    <string name="refresh_data">Perbaharui Data</string>
+    <string name="logout">Logout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Buat String yang ada di bagian absensi -->
+    <string name="mulai">Mulai</string>
+    <string name="selesai">Selesai</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- Data Spinner -->
+    <string-array name="kota">
+        <item>KABUPATEN LEBAK</item>
+        <item>KABUPATEN BANTEN</item>
+        <item>KABUPATEN SERANG</item>
+        <item>KABUPATEN TANGERANG</item>
+        <item>KOTA CILEGON</item>
+        <item>KOTA SERANG</item>
+        <item>KOTA TANGERANG</item>
+        <item>KOTA TANGERANG SELATAN</item>
+        <item>KABUPATEN KEPULAUAN SERIBU</item>
+        <item>KOTA JAKARTA BARAT</item>
+        <item>KOTA JAKARTA PUSAT</item>
+        <item>KOTA JAKARTA SELATAN</item>
+        <item>KOTA JAKARTA TIMUR</item>
+        <item>KOTA JAKARTA UTARA</item>
+        <item>KABUPATEN BANDUNG</item>
+        <item>KABUPATEN BANDUNG BARAT</item>
+        <item>KABUPATEN BEKASI</item>
+        <item>KABUPATEN BOGOR</item>
+        <item>KABUPATEN CIAMIS</item>
+        <item>KABUPATEN CIANJUR</item>
+        <item>KABUPATEN CIREBON</item>
+        <item>KABUPATEN GARUT</item>
+        <item>KABUPATEN INDRAMAYU</item>
+        <item>KABUPATEN KARAWANG</item>
+        <item>KABUPATEN KUNINGAN</item>
+    </string-array>
+
+
+    <string-array name="tipetoko">
+        <item>SMALL OUTLET</item>
+        <item>HIGH CLASS OUTLET</item>
+        <item>START OUTLET</item>
+        <item>SUBDISTRIBUTOR</item>
+        <item>VIHARA</item>
+        <item>R1</item>
+        <item>R2</item>
+        <item>W1</item>
+        <item>W2</item>
+    </string-array>
+
+    //yang ini yang bakal awet mah
+    <string-array name="payment">
+        <item>CASH</item>
+        <item>KREDIT</item>
+    </string-array>
+
+
+</resources>

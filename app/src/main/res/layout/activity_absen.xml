@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.co.olaga.gosales.Activity.AbsenActivity"
+    android:background="@color/background">
+
+
+     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/foto"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:src="@drawable/add"
+        android:background="@drawable/bgaddfoto"
+        android:onClick="addfoto"
+         android:padding="2dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:padding="30dp"
+        android:id="@+id/relativeLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/mulai"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/buttonbulet"
+                android:gravity="center"
+                android:onClick="mulaikerja"
+                android:text="@string/mulai"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/selesai"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:background="@drawable/buttonbulet"
+                android:gravity="center"
+                android:onClick="selesaikerja"
+                android:text="@string/selesai"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

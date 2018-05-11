@@ -1,0 +1,87 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.co.olaga.gosales.tabswipe.payment"
+    android:background="@color/colorPrimaryDark">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/payment"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:entries="@array/payment"
+                android:backgroundTint="#464444"
+                >
+            </Spinner>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:id="@+id/tiLimit">
+
+                <EditText
+                    android:id="@+id/limit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:padding="13dp"
+                    android:singleLine="true"
+                    android:hint="Limit"
+                    android:background="@drawable/bdedittext"
+                    android:inputType="phone"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="150dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/tiTop">
+
+                    <EditText
+                        android:id="@+id/top"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/bdedittext"
+                        android:hint="Top"
+                        android:padding="13dp"
+                        android:singleLine="true"
+                        android:inputType="phone"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="/ Hari"
+                    android:textColor="@color/putih"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="15dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

@@ -1,0 +1,101 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.co.olaga.gosales.tabswipe.berkas"
+    android:background="@color/colorPrimaryDark">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <EditText
+                    android:id="@+id/no_npwp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:padding="13dp"
+                    android:singleLine="true"
+                    android:hint="No NPWP"
+                    android:background="@drawable/bdedittext"
+                    android:inputType="phone"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <EditText
+                    android:id="@+id/nm_npwp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:padding="13dp"
+                    android:singleLine="true"
+                    android:hint="Nama"
+                    android:background="@drawable/bdedittext"
+                    android:inputType="textCapCharacters"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp">
+
+                <EditText
+                    android:id="@+id/alm_npwp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine|textCapCharacters"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:scrollbars="vertical"
+                    android:background="@drawable/bdedittext"
+                    android:hint="Alamat"
+                    android:gravity="left|top"
+                    android:padding="13dp"
+                    android:layout_marginBottom="15dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <EditText
+                    android:id="@+id/no_nppkp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="15dp"
+                    android:padding="13dp"
+                    android:singleLine="true"
+                    android:hint="No NPPKP"
+                    android:background="@drawable/bdedittext"
+                    android:inputType="phone"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</FrameLayout>
