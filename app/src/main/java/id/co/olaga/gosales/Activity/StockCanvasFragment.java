@@ -1,25 +1,14 @@
 package id.co.olaga.gosales.Activity;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
-import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,28 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
-
 import id.co.olaga.gosales.App.AppController;
 import id.co.olaga.gosales.App.AppVar;
 import id.co.olaga.gosales.R;
 import id.co.olaga.gosales.Sqlite.DatabaseHelper;
-
-import static android.content.Context.LOCATION_SERVICE;
 import static id.co.olaga.gosales.App.AppController.TAG;
 
 
