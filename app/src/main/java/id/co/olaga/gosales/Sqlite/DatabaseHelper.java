@@ -205,7 +205,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
       private static final String STOCK_CANVASER = "CREATE TABLE "
             + TABLE_STOCK_CANVAS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + STOCK_CODE_CANVAS + " VARCHAR, "+ STOCK_NAME_CANVAS + " VARCHAR, "+ STOCK_QTY + " INT, "+ STOCK_UOM + " VARCHAR, "
-            + STOCK_QTY + " INT, "+ STOCK_UOMX
+            + STOCK_QTYX + " INT, "+ STOCK_UOMX
             + " VARCHAR);";
 
 

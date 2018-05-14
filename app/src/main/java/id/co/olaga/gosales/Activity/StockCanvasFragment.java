@@ -23,18 +23,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import id.co.olaga.gosales.App.AppController;
 import id.co.olaga.gosales.App.AppVar;
+import id.co.olaga.gosales.App.SessionManager;
 import id.co.olaga.gosales.R;
 import id.co.olaga.gosales.Sqlite.DatabaseHelper;
 import id.co.olaga.gosales.recycle.RecyclerViewAdapter;
@@ -65,6 +76,10 @@ public class StockCanvasFragment extends Fragment {
     private ArrayList<String> uom;
     private ArrayList<String> StockKrt;
     private ArrayList<String> uomx;
+
+
+    SessionManager sessionManager;
+    public static String nama;
 
     public static final String STOCK_CODE_CANVAS = "stock_code";
     public static final String STOCK_NAME_CANVAS = "stock_name";
@@ -146,8 +161,9 @@ public class StockCanvasFragment extends Fragment {
         itemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line));
         recyclerView.addItemDecoration(itemDecoration);
 
-
-
+        sessionManager = new SessionManager(getActivity().getApplicationContext());
+        final HashMap<String, String> user = sessionManager.getUserDetails();
+        nama = user.get(SessionManager.kunci_user);
 
         fab = (FloatingActionButton) fragmentview.findViewById(R.id.fabpenjualan);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +180,7 @@ public class StockCanvasFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                callVolleyStock();
+                callVolley();
                 Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
             }
         });
@@ -213,48 +229,6 @@ public class StockCanvasFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void callVolleyStock(){
-
-        DatabaseHelper db= new DatabaseHelper(getActivity());
-        db.deleteProduk();
-
-        // membuat request JSON
-        JsonArrayRequest jArr = new JsonArrayRequest(AppVar.ADD_STOCK, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.d(TAG, response.toString());
-
-                // Parsing json
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        JSONObject obj = response.getJSONObject(i);
-
-                        DatabaseHelper db = new DatabaseHelper(getActivity());
-
-                        db.addStockCanvaser(obj.getString(AppVar.TAG_STOCK_CODE_CANVAS),obj.getString(AppVar.TAG_STOCK_NAME_CANVAS),obj.getInt(AppVar.TAG_STOCK_QTY),
-                                obj.getString(AppVar.TAG_STOCK_UOM), obj.getInt(AppVar.TAG_STOCK_QTYX),
-                                obj.getString(AppVar.TAG_STOCK_UOMX));
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-
-            }
-        });
-
-        // menambah request ke request queue
-        AppController.getInstance(getActivity()).addToRequestQueue(jArr);
-    }
 
     protected void getData(){
         //Mengambil Repository dengan Mode Membaca
@@ -279,5 +253,68 @@ public class StockCanvasFragment extends Fragment {
         }
     }
 
+    private void callVolley(){
+
+        StringRequest eventoReq = new StringRequest(Request.Method.POST,AppVar.ADD_STOCK,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response.toString());
+
+                        try{
+                            JSONArray j= new JSONArray(response);
+
+                            // Parsea json
+                            for (int i = 0; i < j.length(); i++) {
+                                try {
+                                    JSONObject obj = j.getJSONObject(i);
+
+                                    DatabaseHelper db = new DatabaseHelper(getActivity());
+
+                                    db.addStockCanvaser(obj.getString(AppVar.TAG_STOCK_CODE_CANVAS),obj.getString(AppVar.TAG_STOCK_NAME_CANVAS),obj.getInt(AppVar.TAG_STOCK_QTY),
+                                            obj.getString(AppVar.TAG_STOCK_UOM), obj.getInt(AppVar.TAG_STOCK_QTYX),
+                                            obj.getString(AppVar.TAG_STOCK_UOMX));
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put(AppVar.USER, nama);
+                params.put(AppVar.TANGGAL, getTanggal());
+                return params;
+            }
+        };
+
+        // Añade la peticion a la cola
+        AppController.getInstance(getActivity()).addToRequestQueue(eventoReq);
+    }
+
+
+    private String getTanggal() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
 }
