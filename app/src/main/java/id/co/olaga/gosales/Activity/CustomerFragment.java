@@ -88,7 +88,7 @@ public class CustomerFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-        
+
         return fragmentview;
 
     }
