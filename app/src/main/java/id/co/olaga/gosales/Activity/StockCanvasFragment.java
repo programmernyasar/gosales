@@ -180,7 +180,7 @@ public class StockCanvasFragment extends Fragment {
 
                         DatabaseHelper db = new DatabaseHelper(getActivity());
 
-                        db.addStockCanvaser(obj.getString(AppVar.TAG_STOCK_CODE_CANVAS),obj.getInt(AppVar.TAG_STOCK_QTY),
+                        db.addStockCanvaser(obj.getString(AppVar.TAG_STOCK_CODE_CANVAS),obj.getString(AppVar.TAG_STOCK_NAME_CANVAS),obj.getInt(AppVar.TAG_STOCK_QTY),
                                 obj.getString(AppVar.TAG_STOCK_UOM), obj.getInt(AppVar.TAG_STOCK_QTYX),
                                 obj.getString(AppVar.TAG_STOCK_UOMX));
 

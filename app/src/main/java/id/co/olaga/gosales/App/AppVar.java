@@ -122,6 +122,7 @@ public class AppVar {
     // Stock Canvaser
 
     public static final String TAG_STOCK_CODE_CANVAS = "Stock_Code";
+    public static final String TAG_STOCK_NAME_CANVAS = "stock_name";
     public static final String TAG_STOCK_QTY = "Stock_Qty";
     public static final String TAG_STOCK_UOM = "stock_UOM";
     public static final String TAG_STOCK_QTYX = "Stock_Qtyx";

@@ -101,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Coloumn table stock_canvaser
 
     public static final String STOCK_CODE_CANVAS = "stock_code";
+    public static final String STOCK_NAME_CANVAS = "stock_name";
     public static final String STOCK_QTY = "stock_qty";
     public static final String STOCK_UOM = "stock_uom";
     public static final String STOCK_QTYX = "stock_qtyx";
@@ -203,7 +204,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
       private static final String STOCK_CANVASER = "CREATE TABLE "
             + TABLE_STOCK_CANVAS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + STOCK_CODE_CANVAS + " VARCHAR, "+ STOCK_QTY + " INT, "+ STOCK_UOM + " VARCHAR, "
+            + STOCK_CODE_CANVAS + " VARCHAR, "+ STOCK_NAME_CANVAS + " VARCHAR, "+ STOCK_QTY + " INT, "+ STOCK_UOM + " VARCHAR, "
             + STOCK_QTY + " INT, "+ STOCK_UOMX
             + " VARCHAR);";
 
@@ -485,13 +486,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean addStockCanvaser(String stock_code, int stock_qty, String stock_uom, int stock_qtyx,
+    public boolean addStockCanvaser(String stock_code, String stock_name, int stock_qty, String stock_uom, int stock_qtyx,
                                     String stock_uomx) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(STOCK_CODE_CANVAS, stock_code);
+        contentValues.put(STOCK_NAME_CANVAS, stock_name);
         contentValues.put(STOCK_QTY, stock_qty);
         contentValues.put(STOCK_UOM, stock_uom);
         contentValues.put(STOCK_QTYX, stock_qtyx);
