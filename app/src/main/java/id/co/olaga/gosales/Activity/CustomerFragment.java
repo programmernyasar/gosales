@@ -26,7 +26,6 @@ import id.co.olaga.gosales.R;
 public class CustomerFragment extends Fragment {
 
     FloatingActionButton fabadd;
-    FloatingActionButton fabrefresh;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,10 +71,6 @@ public class CustomerFragment extends Fragment {
 
 
         }
-
-
-
-
     }
 
 
@@ -93,18 +88,8 @@ public class CustomerFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-
-//        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshcustomer);
-//        fabrefresh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getActivity(), "Refresh Your Customer", Toast.LENGTH_LONG).show();
-//            }
-//        });
-
-
+        
         return fragmentview;
-
 
     }
 
