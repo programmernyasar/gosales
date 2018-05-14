@@ -35,8 +35,12 @@ public class AppVar {
 
     public static final String ADD_PRODUK = "https://67d206019ad8.sn.mynetname.net/web_services/produk.php";
 
+    // Stock Canvaser
+
+    public static final String ADD_STOCK = "https://67d206019ad8.sn.mynetname.net/web_services/stock.php";
+
+
     // pengiriman post
-    public static final String ID = "id";
     public static final String IMAGE = "image";
     public static final String USER= "user";
     public static final String TAG_SUCCESS = "success";

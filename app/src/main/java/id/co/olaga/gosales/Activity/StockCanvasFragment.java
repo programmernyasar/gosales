@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -19,22 +21,35 @@ import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import id.co.olaga.gosales.App.AppController;
+import id.co.olaga.gosales.App.AppVar;
 import id.co.olaga.gosales.R;
+import id.co.olaga.gosales.Sqlite.DatabaseHelper;
 
 import static android.content.Context.LOCATION_SERVICE;
+import static id.co.olaga.gosales.App.AppController.TAG;
 
 
 /**
@@ -104,8 +119,6 @@ public class StockCanvasFragment extends Fragment {
         // Inflate the layout for this fragment
         View fragmentview = inflater.inflate(R.layout.fragment_stock_canvas, container, false);
 
-
-
         fab = (FloatingActionButton) fragmentview.findViewById(R.id.fabpenjualan);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +133,8 @@ public class StockCanvasFragment extends Fragment {
         fabrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                callVolleyStock();
                 Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
             }
         });
@@ -166,5 +181,50 @@ public class StockCanvasFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+    private void callVolleyStock(){
+
+        DatabaseHelper db= new DatabaseHelper(getActivity());
+        db.deleteProduk();
+
+        // membuat request JSON
+        JsonArrayRequest jArr = new JsonArrayRequest(AppVar.ADD_STOCK, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d(TAG, response.toString());
+
+                // Parsing json
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = response.getJSONObject(i);
+
+                        DatabaseHelper db = new DatabaseHelper(getActivity());
+
+                        db.addStockCanvaser(obj.getString(AppVar.TAG_STOCK_CODE_CANVAS),obj.getInt(AppVar.TAG_STOCK_QTY),
+                                obj.getString(AppVar.TAG_STOCK_UOM), obj.getInt(AppVar.TAG_STOCK_QTYX),
+                                obj.getString(AppVar.TAG_STOCK_UOMX));
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+            }
+        });
+
+        // menambah request ke request queue
+        AppController.getInstance(getActivity()).addToRequestQueue(jArr);
+    }
+
 
 }
