@@ -134,10 +134,7 @@ public class MenuActivity extends AppCompatActivity
              public void onSearchViewClosed() {
              }
          });
-     }    /*click alt+insert key */
-
-
-
+     }
 
      @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -317,6 +314,8 @@ public class MenuActivity extends AppCompatActivity
 
     }
 
+    // pengambilan data dari mysql ke sqlite
+
      private void callVolleyKota(){
 
          // membuat request JSON
@@ -469,11 +468,5 @@ public class MenuActivity extends AppCompatActivity
          }
 
      }
-
-
-
-
-
-
 
 }

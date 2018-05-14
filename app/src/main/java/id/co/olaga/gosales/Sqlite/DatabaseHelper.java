@@ -98,6 +98,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String STOCK_UOM_KONVERSI2 = "stock_uom_konversi2";
     public static final String STOCK_UOM_KONVERSI3 = "stock_uom_konversi3";
 
+    // Coloumn table stock_canvaser
+
+    public static final String STOCK_CODE_CANVAS = "stock_code";
+    public static final String STOCK_QTY = "stock_qty";
+    public static final String STOCK_UOM = "stock_uom";
+    public static final String STOCK_QTYX = "stock_qtyx";
+    public static final String STOCK_UOMX = "stock_uomx";
 
 
     // Coloumn Table Type Customer
@@ -110,6 +117,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Coloumn Table type uom
     public static final String NAMA_UOM = "nama_tipe_uom";
+
+
 
 
 
@@ -192,6 +201,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " INTEGER, "+ STOCK_UOM_KONVERSI3 + " INTEGER);";
 
 
+      private static final String STOCK_CANVASER = "CREATE TABLE "
+            + TABLE_STOCK_CANVAS + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + STOCK_CODE_CANVAS + " VARCHAR, "+ STOCK_QTY + " INT, "+ STOCK_UOM + " VARCHAR, "
+            + STOCK_QTY + " INT, "+ STOCK_UOMX
+            + " VARCHAR);";
+
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -209,6 +225,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(TIPE_CUSTOMER);
         db.execSQL(TIPE_UOM);
         db.execSQL(PRODUK);
+        db.execSQL(STOCK_CANVASER);
     }
 
     //upgrading the database
@@ -223,6 +240,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String kota = "DROP TABLE IF EXISTS "+TABLE_KOTA;
         String tipe_uom = "DROP TABLE IF EXISTS "+TABLE_UOM;
         String produk = "DROP TABLE IF EXISTS "+TABLE_PRODUK;
+        String stock = "DROP TABLE IF EXISTS "+TABLE_STOCK_CANVAS;
 
         //eksekusinya
 
@@ -235,6 +253,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(kota);
         db.execSQL(tipe_uom);
         db.execSQL(produk);
+        db.execSQL(stock);
         onCreate(db);
     }
 
@@ -466,6 +485,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public boolean addStockCanvaser(String stock_code, int stock_qty, String stock_uom, int stock_qtyx,
+                                    String stock_uomx) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(STOCK_CODE_CANVAS, stock_code);
+        contentValues.put(STOCK_QTY, stock_qty);
+        contentValues.put(STOCK_UOM, stock_uom);
+        contentValues.put(STOCK_QTYX, stock_qtyx);
+        contentValues.put(STOCK_UOMX, stock_uomx);
+
+        db.insert(TABLE_STOCK_CANVAS, null, contentValues);
+        db.close();
+        return true;
+    }
+
+
     // bagian bagian update update
 
     public boolean updateTrackStatus(int id, int status) {
@@ -650,10 +687,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+
     public void deleteProduk()
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from "+ TABLE_PRODUK);
+        db.close();
+    }
+
+
+    public void deleteStock()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_STOCK_CANVAS);
         db.close();
     }
 

@@ -66,11 +66,6 @@ public class AppVar {
     public static final String ALAMAT_TOKO="alamat_toko";
     public static final String KOTA_TOKO="kota_toko";
 
-
-
-
-
-
     public static final String KTP_CUSTOMER="ktp_customer";
     public static final String NAMA_CUSTOMER="nama_customer";
     public static final String ALAMAT_CUSTOMER="alamat_customer";
@@ -85,7 +80,6 @@ public class AppVar {
     public static final String PAYMENT_TOKO="payment_toko";
     public static final String LIMIT_TOKO="limit_toko";
     public static final String TOP_TOKO="top_toko";
-
 
     public static final String FOTO_TOKO="foto_toko";
     public static final String FOTO_KTP_TOKO="foto_ktp_toko";
@@ -118,6 +112,18 @@ public class AppVar {
     public static final String TAG_STOCK_UOM_KONVERSI1     = "stock_UOM_KONVERSI1";
     public static final String TAG_STOCK_UOM_KONVERSI2     = "stock_UOM_KONVERSI2";
     public static final String TAG_STOCK_UOM_KONVERSI3     = "stock_UOM_KONVERSI3";
+
+
+
+    // Stock Canvaser
+
+    public static final String TAG_STOCK_CODE_CANVAS = "Stock_Code";
+    public static final String TAG_STOCK_QTY = "Stock_Qty";
+    public static final String TAG_STOCK_UOM = "stock_UOM";
+    public static final String TAG_STOCK_QTYX = "Stock_Qtyx";
+    public static final String TAG_STOCK_UOMX= "Stock_UOMx";
+
+
 
 
 
