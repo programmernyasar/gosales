@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +35,7 @@ import id.co.olaga.gosales.R;
 import id.co.olaga.gosales.App.AppVar;
 import id.co.olaga.gosales.Sqlite.DatabaseHelper;
 import id.co.olaga.gosales.recycle.RecyclerViewAdapter;
+import id.co.olaga.gosales.recycle.RecyclerViewAdapterStock;
 
 import static id.co.olaga.gosales.App.AppController.TAG;
 
@@ -51,6 +53,7 @@ public class ProdukFragment extends Fragment {
 
     FloatingActionButton fabrefresh;
     private DatabaseHelper MyDatabase;
+    View fragmentview;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -106,7 +109,7 @@ public class ProdukFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View fragmentview = inflater.inflate(R.layout.fragment_produk, container, false);
+        fragmentview = inflater.inflate(R.layout.fragment_produk, container, false);
         NamaList = new ArrayList<>();
         MyDatabase = new DatabaseHelper(getActivity());
         recyclerView = fragmentview.findViewById(R.id.recycler);
@@ -247,6 +250,25 @@ public class ProdukFragment extends Fragment {
             NamaList.add(cursor.getString(0));//Menambil Data Dari Kolom 1 (Nama)
 
         }
+    }
+
+    private  void refreshAll(){
+        NamaList = new ArrayList<>();
+        MyDatabase = new DatabaseHelper(getActivity());
+        recyclerView = fragmentview.findViewById(R.id.recycler);
+        getData();
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        adapter = new RecyclerViewAdapter(NamaList);
+
+        //Memasang Adapter pada RecyclerView
+        recyclerView.setAdapter(adapter);
+
+        //Membuat Underline pada Setiap Item Didalam List
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        itemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line));
+        recyclerView.addItemDecoration(itemDecoration);
     }
 
     

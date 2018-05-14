@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,7 +49,6 @@ import id.co.olaga.gosales.App.AppVar;
 import id.co.olaga.gosales.App.SessionManager;
 import id.co.olaga.gosales.R;
 import id.co.olaga.gosales.Sqlite.DatabaseHelper;
-import id.co.olaga.gosales.recycle.RecyclerViewAdapter;
 import id.co.olaga.gosales.recycle.RecyclerViewAdapterStock;
 
 import static id.co.olaga.gosales.App.AppController.TAG;
@@ -66,6 +66,7 @@ public class StockCanvasFragment extends Fragment {
     FloatingActionButton fab;
     FloatingActionButton fabrefresh;
     private DatabaseHelper MyDatabase;
+    View fragmentview;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -137,7 +138,7 @@ public class StockCanvasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragmentview = inflater.inflate(R.layout.fragment_stock_canvas, container, false);
+        fragmentview = inflater.inflate(R.layout.fragment_stock_canvas, container, false);
         KodeList = new ArrayList<>();
         NamaList = new ArrayList<>();
         StockKrt = new ArrayList<>();
@@ -179,6 +180,7 @@ public class StockCanvasFragment extends Fragment {
         fabrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                 callVolley();
                 Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
@@ -300,8 +302,8 @@ public class StockCanvasFragment extends Fragment {
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(AppVar.USER, nama);
-                params.put(AppVar.TANGGAL, getTanggal());
+                params.put(AppVar.USER, "JA02");
+                params.put(AppVar.TANGGAL, "2018-03-01");
                 return params;
             }
         };
@@ -315,6 +317,30 @@ public class StockCanvasFragment extends Fragment {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    private  void refreshAll(){
+        KodeList = new ArrayList<>();
+        NamaList = new ArrayList<>();
+        StockKrt = new ArrayList<>();
+        uom = new ArrayList<>();
+        StockBks = new ArrayList<>();
+        uomx = new ArrayList<>();
+
+        MyDatabase = new DatabaseHelper(getActivity());
+        getData();
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        adapter = new RecyclerViewAdapterStock(KodeList, NamaList, StockKrt, uom, StockBks, uomx);
+
+        //Memasang Adapter pada RecyclerView
+        recyclerView.setAdapter(adapter);
+
+        //Membuat Underline pada Setiap Item Didalam List
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        itemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line));
+        recyclerView.addItemDecoration(itemDecoration);
     }
 
 }
