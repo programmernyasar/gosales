@@ -183,6 +183,8 @@ public class StockCanvasFragment extends Fragment {
 
 
                 callVolley();
+
+                refreshAll();
                 Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
             }
         });
@@ -320,6 +322,13 @@ public class StockCanvasFragment extends Fragment {
     }
 
     private  void refreshAll(){
+
+        KodeList.clear();
+        NamaList.clear();
+        StockKrt.clear();
+        StockBks.clear();
+        uom.clear();
+        uomx.clear();
         KodeList = new ArrayList<>();
         NamaList = new ArrayList<>();
         StockKrt = new ArrayList<>();

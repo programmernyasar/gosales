@@ -136,6 +136,7 @@ public class ProdukFragment extends Fragment {
             public void onClick(View view) {
 
                 callVolleyProduk();
+                refreshAll();
                 Toast.makeText(getActivity(), "Refresh Your Produk", Toast.LENGTH_LONG).show();
             }
         });
@@ -253,6 +254,7 @@ public class ProdukFragment extends Fragment {
     }
 
     private  void refreshAll(){
+        NamaList.clear();
         NamaList = new ArrayList<>();
         MyDatabase = new DatabaseHelper(getActivity());
         recyclerView = fragmentview.findViewById(R.id.recycler);
