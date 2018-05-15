@@ -60,7 +60,7 @@ public class RecyclerViewAdapter2 extends RecyclerView.Adapter<RecyclerViewAdapt
 
 
         //Mengimplementasikan Menu Popup pada Overflow (ImageView)
-        holder.Overflow.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 Intent toNext= new Intent(V.getContext() ,ViewDataProduk3.class);

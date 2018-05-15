@@ -58,7 +58,7 @@ public class RecyclerViewAdapter3 extends RecyclerView.Adapter<RecyclerViewAdapt
 
 
         //Mengimplementasikan Menu Popup pada Overflow (ImageView)
-        holder.Overflow.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
 
