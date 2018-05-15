@@ -50,7 +50,8 @@
             android:name=".Activity.MenuActivity"
             android:label="@string/title_activity_menu"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".Activity.AddCustomer"
             android:screenOrientation="portrait"

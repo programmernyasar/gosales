@@ -141,22 +141,22 @@ public class ProdukFragment extends Fragment {
             }
         });
 
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0 && fabrefresh.getVisibility() == View.VISIBLE) {
-                    fabrefresh.hide();
-                } else if (dy < 0 && fabrefresh.getVisibility() != View.VISIBLE) {
-                    fabrefresh.show();
-                }
-
-
-
-            }
-        });
+//
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                if (dy > 0 && fabrefresh.getVisibility() == View.VISIBLE) {
+//                    fabrefresh.hide();
+//                } else if (dy < 0 && fabrefresh.getVisibility() != View.VISIBLE) {
+//                    fabrefresh.show();
+//                }
+//
+//
+//
+//            }
+//        });
 
 
         return fragmentview;
