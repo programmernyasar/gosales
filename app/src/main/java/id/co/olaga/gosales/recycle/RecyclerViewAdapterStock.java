@@ -45,8 +45,7 @@ public class RecyclerViewAdapterStock extends RecyclerView.Adapter<RecyclerViewA
         private TextView Nama;
         private TextView Krt;
         private TextView Uom;
-        private TextView Bks;
-        private TextView Uomx;
+
 
         private ImageView Overflow;
 
@@ -61,8 +60,7 @@ public class RecyclerViewAdapterStock extends RecyclerView.Adapter<RecyclerViewA
             Nama = itemView.findViewById(R.id.namaproduk);
             Krt = itemView.findViewById(R.id.stockkarton);
             Uom = itemView.findViewById(R.id.stockuom);
-            Bks = itemView.findViewById(R.id.stockbungkus);
-            Uomx = itemView.findViewById(R.id.stockuomx);
+
 
             Overflow = itemView.findViewById(R.id.overflow);
         }
@@ -86,21 +84,27 @@ public class RecyclerViewAdapterStock extends RecyclerView.Adapter<RecyclerViewA
         final String Bks = stockBks.get(position);
         final String Uomx = uomx.get(position);
 
+
         holder.Kode.setText(Kode);
         holder.Nama.setText(Nama);
-        holder.Krt.setText(Krt);
-        holder.Uom.setText(Uom);
-        holder.Bks.setText(Bks);
-        holder.Uomx.setText(Uomx);
 
+        int ket= Integer.parseInt(Bks);
 
+        if(ket<40){
+
+            holder.Krt.setText(Bks);
+            holder.Uom.setText(Uomx);
+
+        }else
+        {
+            holder.Krt.setText(Krt);
+            holder.Uom.setText(Uom);
+        }
 
         //Mengimplementasikan Menu Popup pada Overflow (ImageView)
         holder.Overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-
-
 
             }
         });

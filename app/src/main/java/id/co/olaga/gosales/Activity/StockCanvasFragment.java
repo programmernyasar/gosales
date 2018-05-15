@@ -181,13 +181,13 @@ public class StockCanvasFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 callVolley();
-
                 refreshAll();
                 Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
             }
         });
+
+
 
 
         return fragmentview;
