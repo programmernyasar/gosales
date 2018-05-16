@@ -130,17 +130,17 @@ public class ProdukFragment extends Fragment {
 
 
 
-        // ini fab buat refresh data sqlite
-//        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshproduk);
-//        fabrefresh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                callVolleyProduk();
-//                refreshAll();
-//                Toast.makeText(getActivity(), "Refresh Your Produk", Toast.LENGTH_LONG).show();
-//            }
-//        });
+//         ini fab buat refresh data sqlite
+        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshproduk);
+        fabrefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                callVolleyProduk();
+
+                Toast.makeText(getActivity(), "Refresh Your Produk", Toast.LENGTH_LONG).show();
+            }
+        });
 
         final SwipeRefreshLayout dorefresh = (SwipeRefreshLayout)fragmentview.findViewById(R.id.swipeRefresh);
         dorefresh.setColorSchemeResources(android.R.color.holo_blue_bright,

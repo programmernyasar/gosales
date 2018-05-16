@@ -177,16 +177,16 @@ public class StockCanvasFragment extends Fragment {
         });
 
 
-//        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshstock);
-//        fabrefresh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                callVolley();
-//                refreshAll();
-//                Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
-//            }
-//        });
+        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshstock);
+        fabrefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                callVolley();
+
+                Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
+            }
+        });
 
 
         final SwipeRefreshLayout dorefresh = (SwipeRefreshLayout)fragmentview.findViewById(R.id.swipeRefresh);

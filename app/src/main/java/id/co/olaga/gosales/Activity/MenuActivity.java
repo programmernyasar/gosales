@@ -501,6 +501,7 @@ public class MenuActivity extends AppCompatActivity
          NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
          if (activeNetwork != null) {
+
              //if connected to wifi or mobile data plan
              if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
 
