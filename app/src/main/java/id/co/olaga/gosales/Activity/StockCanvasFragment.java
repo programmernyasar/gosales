@@ -139,7 +139,6 @@ public class StockCanvasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentview = inflater.inflate(R.layout.fragment_stock_canvas, container, false);
-        callVolley();
         KodeList = new ArrayList<>();
         NamaList = new ArrayList<>();
         StockKrt = new ArrayList<>();
@@ -203,7 +202,6 @@ public class StockCanvasFragment extends Fragment {
             }
 
             void refreshItem() {
-                callVolley();
                refreshAll();
                 onItemLoad();
             }
