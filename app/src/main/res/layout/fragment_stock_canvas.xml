@@ -25,20 +25,16 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom|end">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/refreshstock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="10dp"
-            app:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/refresh" />
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/refreshstock"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:layout_margin="10dp"-->
+            <!--app:backgroundTint="@color/colorPrimary"-->
+            <!--android:src="@drawable/refresh" />-->
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fabpenjualan"
@@ -49,6 +45,6 @@
             app:backgroundTint="@color/colorPrimary"
             android:src="@drawable/add" />
 
-    </LinearLayout>
+
 
 </FrameLayout>

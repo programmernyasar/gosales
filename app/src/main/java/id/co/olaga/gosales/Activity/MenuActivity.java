@@ -436,6 +436,63 @@ public class MenuActivity extends AppCompatActivity
          AppController.getInstance(this).addToRequestQueue(jArr);
      }
 
+     private void callVolleyStock(){
+
+         StringRequest eventoReq = new StringRequest(Request.Method.POST,AppVar.ADD_STOCK,
+                 new Response.Listener<String>() {
+                     @Override
+                     public void onResponse(String response) {
+                         Log.d(TAG, response.toString());
+
+                         try{
+                             JSONArray j= new JSONArray(response);
+
+                             // Parsea json
+                             for (int i = 0; i < j.length(); i++) {
+                                 try {
+                                     JSONObject obj = j.getJSONObject(i);
+
+                                     DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+
+                                     db.addStockCanvaser(obj.getString(AppVar.TAG_STOCK_CODE_CANVAS),obj.getString(AppVar.TAG_STOCK_NAME_CANVAS),obj.getInt(AppVar.TAG_STOCK_QTY),
+                                             obj.getString(AppVar.TAG_STOCK_UOM), obj.getInt(AppVar.TAG_STOCK_QTYX),
+                                             obj.getString(AppVar.TAG_STOCK_UOMX));
+
+
+                                 } catch (JSONException e) {
+                                     e.printStackTrace();
+                                 }
+
+                             }
+
+                         } catch (JSONException e) {
+                             e.printStackTrace();
+                         }
+
+
+                     }
+                 }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+
+             }
+         }){
+             @Override
+             protected Map<String, String> getParams() {
+                 // Posting parameters to login url
+                 Map<String, String> params = new HashMap<String, String>();
+                 params.put(AppVar.USER, "JA02");
+                 params.put(AppVar.TANGGAL, "2018-03-01");
+                 return params;
+             }
+         };
+
+         // Añade la peticion a la cola
+         AppController.getInstance(this).addToRequestQueue(eventoReq);
+     }
+
      private void refreshAll(){
 
          final ProgressDialog loading = ProgressDialog.show(MenuActivity.this, "Uprading Your Data....", "Please wait...", false, false);
@@ -455,6 +512,7 @@ public class MenuActivity extends AppCompatActivity
                  callVolleyKota();
                  callVolleyTipe();
                  callVolleyProduk();
+                 callVolleyStock();
 
                  loading.dismiss();
                  Toast.makeText(MenuActivity.this, "Data Anda Berhasil Di Perbaharui",Toast.LENGTH_LONG).show();

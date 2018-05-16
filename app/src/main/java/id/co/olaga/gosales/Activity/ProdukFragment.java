@@ -110,6 +110,7 @@ public class ProdukFragment extends Fragment {
 
         // Inflate the layout for this fragment
         fragmentview = inflater.inflate(R.layout.fragment_produk, container, false);
+
         NamaList = new ArrayList<>();
         MyDatabase = new DatabaseHelper(getActivity());
         recyclerView = fragmentview.findViewById(R.id.recycler);
@@ -130,34 +131,40 @@ public class ProdukFragment extends Fragment {
 
 
         // ini fab buat refresh data sqlite
-        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshproduk);
-        fabrefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                callVolleyProduk();
-                refreshAll();
-                Toast.makeText(getActivity(), "Refresh Your Produk", Toast.LENGTH_LONG).show();
-            }
-        });
-
-//
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshproduk);
+//        fabrefresh.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
+//            public void onClick(View view) {
 //
-//                if (dy > 0 && fabrefresh.getVisibility() == View.VISIBLE) {
-//                    fabrefresh.hide();
-//                } else if (dy < 0 && fabrefresh.getVisibility() != View.VISIBLE) {
-//                    fabrefresh.show();
-//                }
-//
-//
-//
+//                callVolleyProduk();
+//                refreshAll();
+//                Toast.makeText(getActivity(), "Refresh Your Produk", Toast.LENGTH_LONG).show();
 //            }
 //        });
 
+        final SwipeRefreshLayout dorefresh = (SwipeRefreshLayout)fragmentview.findViewById(R.id.swipeRefresh);
+        dorefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        /*event ketika widget dijalankan*/
+        dorefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
+            @Override
+            public void onRefresh() {
+                refreshItem();
+            }
+
+            void refreshItem() {
+                refreshAll();
+                onItemLoad();
+            }
+
+            void onItemLoad() {
+                dorefresh.setRefreshing(false);
+            }
+
+        });
 
         return fragmentview;
     }
@@ -270,7 +277,7 @@ public class ProdukFragment extends Fragment {
     }
 
     private  void refreshAll(){
-        NamaList.clear();
+
         NamaList = new ArrayList<>();
         MyDatabase = new DatabaseHelper(getActivity());
         recyclerView = fragmentview.findViewById(R.id.recycler);

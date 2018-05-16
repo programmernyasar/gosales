@@ -686,6 +686,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("delete from "+ TABLE_KOTA);
         db.execSQL("delete from "+ TABLE_TIPE_CUSTOMER);
         db.execSQL("delete from "+ TABLE_PRODUK);
+        db.execSQL("delete from "+ TABLE_STOCK_CANVAS);
         db.close();
     }
 

@@ -139,6 +139,7 @@ public class StockCanvasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fragmentview = inflater.inflate(R.layout.fragment_stock_canvas, container, false);
+        callVolley();
         KodeList = new ArrayList<>();
         NamaList = new ArrayList<>();
         StockKrt = new ArrayList<>();
@@ -176,17 +177,42 @@ public class StockCanvasFragment extends Fragment {
         });
 
 
-        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshstock);
-        fabrefresh.setOnClickListener(new View.OnClickListener() {
+//        fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshstock);
+//        fabrefresh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                callVolley();
+//                refreshAll();
+//                Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
+//            }
+//        });
+
+
+        final SwipeRefreshLayout dorefresh = (SwipeRefreshLayout)fragmentview.findViewById(R.id.swipeRefresh);
+        dorefresh.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        /*event ketika widget dijalankan*/
+        dorefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
             @Override
-            public void onClick(View view) {
-
-                callVolley();
-                refreshAll();
-                Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
+            public void onRefresh() {
+                refreshItem();
             }
-        });
 
+            void refreshItem() {
+                callVolley();
+               refreshAll();
+                onItemLoad();
+            }
+
+            void onItemLoad() {
+                dorefresh.setRefreshing(false);
+            }
+
+        });
 
 
 
@@ -258,6 +284,8 @@ public class StockCanvasFragment extends Fragment {
     }
 
     private void callVolley(){
+        DatabaseHelper db= new DatabaseHelper(getActivity());
+        db.deleteStock();
 
         StringRequest eventoReq = new StringRequest(Request.Method.POST,AppVar.ADD_STOCK,
                 new Response.Listener<String>() {
@@ -323,12 +351,6 @@ public class StockCanvasFragment extends Fragment {
 
     private  void refreshAll(){
 
-        KodeList.clear();
-        NamaList.clear();
-        StockKrt.clear();
-        StockBks.clear();
-        uom.clear();
-        uomx.clear();
         KodeList = new ArrayList<>();
         NamaList = new ArrayList<>();
         StockKrt = new ArrayList<>();
