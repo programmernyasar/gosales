@@ -8,6 +8,10 @@ package id.co.olaga.gosales.App;
 
 public class globalVariable  {
 
+    //untuk customer add nya
+
+    private String ImageURL;
+    private String cust_code;
     private String cust_company;
     private String cust_alamat;
     private String cust_telepon;
@@ -29,7 +33,30 @@ public class globalVariable  {
     private byte[] foto_ktp;
     private byte[] foto_signature;
 
+
     //mulai bikin getter dan setter nya
+
+
+    public String getImageUrl() {
+
+        return ImageURL;
+    }
+
+    public void setImageUrl(String imageServerUrl) {
+
+        this.ImageURL = imageServerUrl;
+    }
+
+    public String getCust_code() {
+
+        return cust_code;
+    }
+
+    public void setCust_code(String aCode) {
+
+        cust_code = aCode;
+
+    }
 
     public String getCust_company() {
 
@@ -273,5 +300,7 @@ public class globalVariable  {
         foto_signature = afsignature;
 
     }
+
+
 
 }
