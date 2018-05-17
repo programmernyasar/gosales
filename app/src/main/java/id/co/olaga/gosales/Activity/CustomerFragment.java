@@ -2,17 +2,30 @@ package id.co.olaga.gosales.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import id.co.olaga.gosales.App.AppVar;
 import id.co.olaga.gosales.R;
+import id.co.olaga.gosales.App.globalVariable;
+import id.co.olaga.gosales.recycle.RecyclerViewAdapterCustomer;
 
 
 /**
@@ -26,6 +39,10 @@ import id.co.olaga.gosales.R;
 public class CustomerFragment extends Fragment {
 
     FloatingActionButton fabadd;
+    SearchView searchView;
+    RecyclerView listshowrcy;
+    List<globalVariable> customerlist = new ArrayList<>();
+    RecyclerViewAdapterCustomer adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,6 +88,7 @@ public class CustomerFragment extends Fragment {
 
 
         }
+        setHasOptionsMenu(true);
     }
 
 
@@ -133,6 +151,67 @@ public class CustomerFragment extends Fragment {
     }
 
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Add your menu entries here
+        super.onCreateOptionsMenu(menu, inflater);
+        final MenuItem myActionMenuItem = menu.findItem(R.id.search);
+        searchView = (SearchView) myActionMenuItem.getActionView();
+        changeSearchViewTextColor(searchView);
+
+
+        ((EditText) searchView.findViewById(
+                android.support.v7.appcompat.R.id.search_src_text)).
+                setHintTextColor(getResources().getColor(R.color.putih));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override            public boolean onQueryTextSubmit(String query) {
+                if (!searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                myActionMenuItem.collapseActionView();
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                final  List<globalVariable> filtermodelist=filter(customerlist,newText);
+                adapter.setfilter(filtermodelist);
+                return true;
+            }
+        });
+
+    }
+
+    //buat kata kunci yang dicari nya
+    private List<globalVariable> filter(List<globalVariable> pl,String query)
+    {
+        query=query.toLowerCase();
+        final List<globalVariable> filteredModeList=new ArrayList<>();
+        for (globalVariable model:pl)
+        {
+            final String text=model.getCust_company().toLowerCase();
+            if (text.startsWith(query))
+            {
+                filteredModeList.add(model);
+            }
+        }
+        return filteredModeList;
+    }
+
+
+    private void changeSearchViewTextColor(View view) {
+        if (view != null) {
+            if (view instanceof TextView) {
+                ((TextView) view).setTextColor(Color.WHITE);
+                return;
+            } else if (view instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) view;
+                for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                    changeSearchViewTextColor(viewGroup.getChildAt(i));
+                }
+            }
+        }
+    }
 
 
 

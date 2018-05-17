@@ -49,7 +49,6 @@ public class RecyclerViewAdapterCustomer  extends
         holder.cust_name.setText(customerlist.get(position).getCust_ktp());
         holder.cust_company.setText(customerlist.get(position).getCust_company());
         holder.city.setText(customerlist.get(position).getCust_kota());
-//        holder.image_customer.setImageResource(customerlist.get(position).getCust_foto());
 
         globalVariable dataAdapterOBJ =  customerlist.get(position);
 
