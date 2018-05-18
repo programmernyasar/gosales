@@ -56,7 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         //Memanggil Nilai/Value Pada View-View Yang Telah Dibuat pada Posisi Tertentu
-        final String Nama = namaList.get(position);//Mengambil data (Nama) sesuai dengan posisi yang telah ditentukan
+        final String Nama = namaList.get(position);
         holder.Nama.setText(Nama);
 
 

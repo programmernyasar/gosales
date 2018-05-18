@@ -85,6 +85,7 @@ public class ViewDataProduk2 extends AppCompatActivity {
             NamaList.add(cursor.getString(0));//Menambil Data Dari Kolom 1 (Nama)
 
         }
+
     }
-    
+
 }

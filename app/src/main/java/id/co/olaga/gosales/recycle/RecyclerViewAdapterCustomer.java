@@ -85,7 +85,7 @@ public class RecyclerViewAdapterCustomer  extends
 
     public void setfilter(List<globalVariable> listitem)
     {
-        customerlist=new ArrayList<>();
+        customerlist = new ArrayList<>();
         customerlist.addAll(listitem);
         notifyDataSetChanged();
     }
