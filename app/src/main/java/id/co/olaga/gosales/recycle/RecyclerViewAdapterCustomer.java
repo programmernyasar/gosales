@@ -35,7 +35,8 @@ public class RecyclerViewAdapterCustomer  extends
     }
 
 
-    @Override    public Holderview onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public Holderview onCreateViewHolder(ViewGroup parent, int viewType) {
         View layout= LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.view_desain_customer,parent,false);
 
@@ -43,7 +44,8 @@ public class RecyclerViewAdapterCustomer  extends
     }
 
 
-    @Override    public void onBindViewHolder(Holderview holder, final int position) {
+    @Override
+    public void onBindViewHolder(Holderview holder, final int position) {
         holder.cust_code.setText(customerlist.get(position).getCust_code());
         holder.cust_name.setText(customerlist.get(position).getCust_ktp());
         holder.cust_company.setText(customerlist.get(position).getCust_company());

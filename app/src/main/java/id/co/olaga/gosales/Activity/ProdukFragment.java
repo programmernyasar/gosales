@@ -131,14 +131,12 @@ public class ProdukFragment extends Fragment {
         itemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.line));
         recyclerView.addItemDecoration(itemDecoration);
 
-
-
 //         ini fab buat refresh data sqlite
         fabrefresh = (FloatingActionButton) fragmentview.findViewById(R.id.refreshproduk);
         fabrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
                 final ProgressDialog loading = ProgressDialog.show(getActivity(), "Uprading Your Data....", "Please wait...", false, false);
                 ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -215,24 +213,13 @@ public class ProdukFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
-
     // mulai dari sini function function penting
-
 
     private void callVolleyProduk(){
 

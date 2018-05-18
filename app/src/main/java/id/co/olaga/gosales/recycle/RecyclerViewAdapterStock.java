@@ -75,11 +75,10 @@ public class RecyclerViewAdapterStock extends RecyclerView.Adapter<RecyclerViewA
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        //Memanggil Nilai/Value Pada View-View Yang Telah Dibuat pada Posisi Tertentu
-        //Memanggil Nilai/Value Pada View-View Yang Telah Dibuat pada Posisi Tertentu
-        final String Kode = kodeList.get(position);//Mengambil data (Nama) sesuai dengan posisi yang telah ditentukan
-        final String Nama = namaList.get(position);//Mengambil data (Jurusan) sesuai dengan posisi yang telah ditentukan
-        final String Krt= stockKrt.get(position);//Mengambil data (NIM) sesuai dengan posisi yang telah ditentukan
+
+        final String Kode = kodeList.get(position);
+        final String Nama = namaList.get(position);
+        final String Krt= stockKrt.get(position);
         final String Uom = uom.get(position);
         final String Bks = stockBks.get(position);
         final String Uomx = uomx.get(position);
@@ -95,10 +94,11 @@ public class RecyclerViewAdapterStock extends RecyclerView.Adapter<RecyclerViewA
             holder.Krt.setText(Bks);
             holder.Uom.setText(Uomx);
 
-        }else
-        {
+        }else{
+
             holder.Krt.setText(Krt);
             holder.Uom.setText(Uom);
+
         }
 
         //Mengimplementasikan Menu Popup pada Overflow (ImageView)
