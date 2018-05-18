@@ -138,8 +138,8 @@ public class ProdukFragment extends Fragment {
         fabrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                
                 final ProgressDialog loading = ProgressDialog.show(getActivity(), "Uprading Your Data....", "Please wait...", false, false);
-
                 ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
