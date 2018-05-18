@@ -165,7 +165,9 @@ public class CustomerFragment extends Fragment {
                 android.support.v7.appcompat.R.id.search_src_text)).
                 setHintTextColor(getResources().getColor(R.color.putih));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override            public boolean onQueryTextSubmit(String query) {
+            @Override
+            public boolean
+            onQueryTextSubmit(String query) {
                 if (!searchView.isIconified()) {
                     searchView.setIconified(true);
                 }
@@ -173,7 +175,8 @@ public class CustomerFragment extends Fragment {
                 return false;
             }
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean
+            onQueryTextChange(String newText) {
                 final  List<globalVariable> filtermodelist=filter(customerlist,newText);
                 adapter.setfilter(filtermodelist);
                 return true;

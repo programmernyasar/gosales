@@ -1,6 +1,7 @@
 package id.co.olaga.gosales.Activity;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.opengl.GLException;
 import android.os.Bundle;
@@ -180,10 +183,33 @@ public class StockCanvasFragment extends Fragment {
         fabrefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final ProgressDialog loading = ProgressDialog.show(getActivity(), "Uprading Your Data....", "Please wait...", false, false);
 
-                callVolley();
+                ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-                Toast.makeText(getActivity(), "Refresh Your Stock", Toast.LENGTH_LONG).show();
+                if (activeNetwork != null) {
+
+                    //if connected to wifi or mobile data plan
+                    if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI || activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+
+                        // Di Tambah Lagi Data nya
+                        callVolley();
+
+                        loading.dismiss();
+                        Toast.makeText(getActivity(), "Data Stock Berhasil Di Perbaharui",Toast.LENGTH_LONG).show();
+
+                    }
+                }
+                else
+                {
+                    loading.dismiss();
+                    Toast.makeText(getActivity(), "Periksa Koneksi Jaringan Anda",Toast.LENGTH_LONG).show();
+                }
+
+
+
+
             }
         });
 
